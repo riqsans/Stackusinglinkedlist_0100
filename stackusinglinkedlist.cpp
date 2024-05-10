@@ -31,5 +31,6 @@ public:
         newNode->next = top;
         top = newNode; // 4. Update the top pointer to the new node
         cout << "Push value: " << value << endl;
+        return value;
     }
 }
