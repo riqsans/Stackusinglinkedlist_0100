@@ -42,5 +42,9 @@ public:
         cout << "Popped value: " << top->data << endl;
         top = top->next; // Update the top poiner to the next node
     }
-    
+
+    // Peek/Top operation: Retrieve the value of the topmost element without removing it
+    void peek(){
+        
+    }
 }
