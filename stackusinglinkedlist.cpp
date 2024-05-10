@@ -18,51 +18,45 @@ class Stack {
 private:
     Node* top; // Pointer to the top node of the stack
 
-
 public:
     Stack() {
         top = NULL; // Initialize the stack with a null top pointer
     }
 
     // Push operation: Insert an element onto the top of the stack
-    int push(int value) {
-        Node* newNode = new Node(); // 1. Allocate memory for the new node
-        newNode->data = value; // 2. assign value
+    void push(int value) {
+        Node* newNode = new Node(); // Allocate memory for the new node
+        newNode->data = value; // Assign value
         newNode->next = top;
-        top = newNode; // 4. Update the top pointer to the new node
+        top = newNode; // Update the top pointer to the new node
         cout << "Push value: " << value << endl;
-        return value;
     }
 
-    //Pop operation: Remove the topmost element from the stack
-    void pop(){
-        if (isEmpty()){
-            cout << "Stack is empty." << endl
+    // Pop operation: Remove the topmost element from the stack
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty." << endl;
+            return;
         }
         cout << "Popped value: " << top->data << endl;
-        top = top->next; // Update the top poiner to the next node
+        Node* temp = top;
+        top = top->next; // Update the top pointer to the next node
+        delete temp; // Free memory of the popped node
     }
 
     // Peek/Top operation: Retrieve the value of the topmost element without removing it
-    void peek(){
-        if (top == NULL) {
-            cout << "List is empty." << endl;
+    void peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty." << endl;
+            return;
         }
-        else {
-            Node* current = top;
-            while (current != NULL) {
-                cout << current ->data << " " << endl;
-                current = current->next;
-            }
-            cout << endl;
-        }// return the value of the top node
-
-        //IsEmpty operation: Check if the stack is empty
-        bool isEmpty(){
-            return top == NULL; // Return true if the top pointer is NULL, indicating an empty  stack
-        }
+        cout << "Top value: " << top->data << endl;
     }
 
+    // IsEmpty operation: Check if the stack is empty
+    bool isEmpty() {
+        return top == NULL; // Return true if the top pointer is NULL, indicating an empty stack
+    }
 };
 
 int main() {
@@ -71,7 +65,7 @@ int main() {
     int choice = 0;
     int value;
 
-    while (choice != 5) {
+    while (choice != 4) {
         cout << "1. Push\n";
         cout << "2. Pop\n";
         cout << "3. Peek\n";
@@ -84,20 +78,18 @@ int main() {
                 cout << "Enter the value to push: ";
                 cin >> value;
                 stack.push(value); // Push the entered value onto the stack
-            break;
+                break;
             case 2:
-                if (!stack.isEmpty()){
+                if (!stack.isEmpty()) {
                     stack.pop(); // Pop the top element from the stack
-                }
-                else{
+                } else {
                     cout << "Stack is empty. Cannot pop." << endl;
                 }
                 break;
             case 3:
-                if (!stack.isEmpty()){
+                if (!stack.isEmpty()) {
                     stack.peek(); // Get the value of the top element
-                }
-                else {
+                } else {
                     cout << "Stack is empty. No top value." << endl;
                 }
                 break;
@@ -110,7 +102,6 @@ int main() {
         }
 
         cout << endl;
-
     }
 
     return 0;
