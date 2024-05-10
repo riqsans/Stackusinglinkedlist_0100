@@ -42,4 +42,5 @@ public:
         cout << "Popped value: " << top->data << endl;
         top = top->next; // Update the top poiner to the next node
     }
+    
 }
